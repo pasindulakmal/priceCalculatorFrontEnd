@@ -1,19 +1,16 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import { Link } from 'react-router-dom';
+import api from '../api/products';
+
 
 const ProductList = (props) => {
   console.log(props);
 
   //addProduct
-  const addPriceHandler = async (price) => {
-       console.log('+++++++++++++++')
-       console.log(price);
-    // const request = {
-    //   ...product,
-    // };
-    // const response = await api.post('/products', request);
-    // setProducts(...products, response.data);
+  const addPriceHandler = async (product) => {
+       const response = await api.get(`/products/${product.id}?cartons=${product.cartons}&units=${product.units}`);
+       return response.data;
   };
 
   const renderProductList = props.products.map((product) => {

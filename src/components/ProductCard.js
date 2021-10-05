@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
-
-const ProductCard = (props ,{addPriceHandler}) => {
+const ProductCard = (props) => {
   const { id, name, cartonPrice, discount, units, unitsPerCarton } =
     props.product;
 
-    console.log(props);
+  const [cartons, setCartons] = useState();
+  const [addUnits, setAddUnits] = useState();
+  const [totalPrice, setTotalPrice] = useState();
 
-    const [cartons, setCartons] = useState();
-    const [addUnits, setAddUnits] = useState();
+  const add = (e) => {
+    e.preventDefault();
+    if (cartons === '' || addUnits === '') {
+      alert('All the feilds are mandatory');
+      return;
+    }
+    const product = {
+      id: id,
+      cartons: cartons,
+      units: addUnits,
+    };
 
-      const add = (e) => {
-        e.preventDefault();
-        if (cartons === '' ||addUnits === '') {
-          alert('All the feilds are mandatory');
-          return;
+     props.addPriceHandler(product).then(data => {
+        if(data){
+            setTotalPrice(data.price);
         }
-        addPriceHandler([cartons,addUnits]);
-      };
+     });
+  };
 
   return (
     <div className='item'>
@@ -34,29 +42,35 @@ const ProductCard = (props ,{addPriceHandler}) => {
         <div>{units}</div>
         <div>{unitsPerCarton}</div>
       </div>
-      <form className='ui form' onSubmit={e => { add(e) }}>
-          <div className='field'>
-            <label>Units</label>
-            <input
-              type='text'
-              name='unit'
-              placeholder='units'
-              value={addUnits}
-              onChange={e => setAddUnits(e.target.value)}
-              />
-          </div>
-          <div className='field'>
-            <label>Carton</label>
-            <input
-              type='text'
-              name='carton'
-              placeholder='carton'
-              value={cartons}
-              onChange={e => setCartons(e.target.value)}
-              />
-          </div>
-          <button className='ui button green'>Calculate Price</button>
-        </form>
+      <form
+        className='ui form'
+        onSubmit={(e) => {
+          add(e);
+        }}
+      >
+        <div className='field'>
+          <label>Units</label>
+          <input
+            type='text'
+            name='unit'
+            placeholder='units'
+            value={addUnits}
+            onChange={(e) => setAddUnits(e.target.value)}
+          />
+        </div>
+        <div className='field'>
+          <label>Carton</label>
+          <input
+            type='text'
+            name='carton'
+            placeholder='carton'
+            value={cartons}
+            onChange={(e) => setCartons(e.target.value)}
+          />
+        </div>
+        <button className='ui button green'>Calculate Price</button>
+        <lael>Total Price = {totalPrice}</lael>
+      </form>
     </div>
   );
 };
