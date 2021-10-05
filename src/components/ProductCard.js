@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 const ProductCard = (props) => {
-  const { id, name, cartonPrice, discount, units, unitsPerCarton } =
+  const { id, name, cartonPrice, discount, units, unitsInCarton } =
     props.product;
 
   const [cartons, setCartons] = useState();
@@ -36,11 +36,11 @@ const ProductCard = (props) => {
         alt='user'
       />
       <div className='content'>
-        <div className='header'>{name}</div>
-        <div>{cartonPrice}</div>
-        <div>{discount}</div>
-        <div>{units}</div>
-        <div>{unitsPerCarton}</div>
+        <div className='header'><label>Product Name  :</label>{name}</div>
+        <div><label>Carton Price  :</label>{cartonPrice}</div>
+        <div><label>Discount      :</label>{discount}</div>
+        <div><label>Available Units   :</label>{units}</div>
+        <div><label>Units Available for Carton  :</label>{unitsInCarton}</div>
       </div>
       <form
         className='ui form'

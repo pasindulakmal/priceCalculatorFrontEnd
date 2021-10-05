@@ -7,7 +7,7 @@ class AddProduct extends React.Component {
     cartonPrice: '',
     discount: '',
     units: '',
-    unitsPerCarton: '',
+    unitsInCarton: '',
   };
 
   add = (e) => {
@@ -17,7 +17,7 @@ class AddProduct extends React.Component {
       this.state.units === '' ||
       this.state.cartonPrice === '' ||
       this.state.discount === '' ||
-      this.unitsPerCarton === ''
+      this.unitsInCarton === ''
     ) {
       alert('All the feilds are mandatory');
       return;
@@ -31,7 +31,7 @@ class AddProduct extends React.Component {
       units: '',
       cartonPrice: '',
       discount: '',
-      unitsPerCarton: '',
+      unitsInCarton: '',
     });
   };
 
@@ -53,7 +53,7 @@ class AddProduct extends React.Component {
           <div className='field'>
             <label>Carton Price</label>
             <input
-              type='text'
+              type='number'
               name='cartonPrice'
               placeholder='cartonPrice'
               value={this.state.cartonPrice}
@@ -86,9 +86,9 @@ class AddProduct extends React.Component {
               type='text'
               name='unitsPerCarton'
               placeholder='unitsPerCarton'
-              value={this.state.unitsPerCarton}
+              value={this.state.unitsInCarton}
               onChange={(e) =>
-                this.setState({ unitsPerCarton: e.target.value })
+                this.setState({ unitsInCarton: e.target.value })
               }
             />
           </div>
