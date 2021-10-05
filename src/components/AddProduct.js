@@ -8,6 +8,7 @@ class AddProduct extends React.Component {
     discount: '',
     units: '',
     unitsInCarton: '',
+    img:''
   };
 
   add = (e) => {
@@ -17,7 +18,8 @@ class AddProduct extends React.Component {
       this.state.units === '' ||
       this.state.cartonPrice === '' ||
       this.state.discount === '' ||
-      this.unitsInCarton === ''
+      this.unitsInCarton === '' ||
+      this.img === ''
     ) {
       alert('All the feilds are mandatory');
       return;
@@ -32,12 +34,13 @@ class AddProduct extends React.Component {
       cartonPrice: '',
       discount: '',
       unitsInCarton: '',
+      img:''
     });
   };
 
   render() {
     return (
-      <div className='ui main'>
+      <div className='ui container'>
         <h2>Add Product</h2>
         <form className='ui form' onSubmit={this.add}>
           <div className='field'>
@@ -89,6 +92,18 @@ class AddProduct extends React.Component {
               value={this.state.unitsInCarton}
               onChange={(e) =>
                 this.setState({ unitsInCarton: e.target.value })
+              }
+            />
+          </div>
+          <div className='field'>
+            <label>Image Link</label>
+            <input
+              type='text'
+              name='img'
+              placeholder='img link'
+              value={this.state.img}
+              onChange={(e) =>
+                this.setState({ img: e.target.value })
               }
             />
           </div>

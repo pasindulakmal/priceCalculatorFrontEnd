@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 const ProductCard = (props) => {
-  const { id, name, cartonPrice, discount, units, unitsInCarton } =
+  const { id, name, cartonPrice, discount, units, unitsInCarton,img } =
     props.product;
 
   const [cartons, setCartons] = useState();
   const [addUnits, setAddUnits] = useState();
   const [totalPrice, setTotalPrice] = useState();
+
+
+  console.log( props.product)
 
   const add = (e) => {
     e.preventDefault();
@@ -29,10 +32,11 @@ const ProductCard = (props) => {
   };
 
   return (
-    <div className='item'>
+    <div className='ui container'>
+    <div className='ui card'>
       <img
-        className='ui avatar image'
-        src='https://ae01.alicdn.com/kf/H3166edf304b5454396baf235e7bed124d/DOUBCHOW-Ear-Moving-Plush-Black-Penguin-Animal-Hat-with-Paws-for-Adults-Teenagers-Kids-Boys-Girls.jpg_Q90.jpg_.webp'
+        className='image'
+        src={img}
         alt='user'
       />
       <div className='content'>
@@ -71,6 +75,7 @@ const ProductCard = (props) => {
         <button className='ui button green'>Calculate Price</button>
         <lael>Total Price = {totalPrice}</lael>
       </form>
+    </div>
     </div>
   );
 };
